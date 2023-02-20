@@ -15,7 +15,7 @@
 
 	<c:if test="${not empty lgnss }">
 		<div>
-			<button type="button" class="writeBoard btn-primary pull-right">글쓰기</button>
+			<button type="button" class="writeBoard">글쓰기</button>
 		</div>
 	</c:if>
 
