@@ -12,6 +12,36 @@ import semi.board.VO.BoardVo;
 import semi.member.vo.MemberVo;
 
 public class BoardDao {
+	
+	// 글 목록에서 누르면 해당 글로 이동시켜주는거
+	public BoardVo getContent(Connection conn, int urlNum) {
+		PreparedStatement pstmt;
+		ResultSet rs= null;
+		String sql="select * from BOARDTBL where boardNum = ?";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, urlNum);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				BoardVo vo= new BoardVo();
+				vo.setBoardNum(rs.getInt(1));
+				vo.setBoardWriter(rs.getString(2));
+				vo.setBoardSubject(rs.getString(3));
+				vo.setBoardContent(rs.getString(4));
+				vo.setBoardDate(rs.getDate(5));
+				vo.setBoardView(rs.getInt(6));
+				return vo;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 	public List<BoardVo> getBoardList(Connection conn){
 		List<BoardVo> result = null;
 		PreparedStatement pstmt = null;
@@ -100,6 +130,27 @@ public class BoardDao {
 			e.printStackTrace();
 		}
 		
+		return result;
+	}
+
+	public int writeContext(Connection conn, BoardVo vo) {
+		PreparedStatement pstmt= null;
+		int result = -1;
+		String sql= "Insert Into boardTbl values ((select NVL(MAX(boardNum), 0)+1 from BOARDTBL), ?, ?, ?, default, default )";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getBoardWriter());
+			pstmt.setString(2, vo.getBoardSubject());
+			pstmt.setString(3, vo.getBoardContent());
+			
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+		}
 		return result;
 	}
 

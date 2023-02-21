@@ -7,7 +7,7 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end" style=" border-collapse: collapse; width: 60%; padding-bottom:10px; right: 30px">
 		
 	</div>
-	
+
 	<table style="margin-left:auto;margin-right:auto; border: 1px solid #444444; border-collapse: collapse; width: 80%; ">
 		<tr style="border: 1px solid #444444; text-align:center"> 
 			<td style="border: 1px solid #444444;">&nbsp;&nbsp;번호&nbsp;&nbsp;</td>
@@ -18,11 +18,11 @@
 		</tr>
 		<c:forEach items="${boardlist }" var="vo">
 			<tr style=" border: 1px solid #444444; padding: 10px;  text-align:center"> 
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="?=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardNum } </a></td>
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="?=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardWriter } </a></td>
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="?=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardSubject } </a></td>
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="?=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardDate } </a></td>
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="?=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardView } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="content.jsp?urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardNum } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardWriter } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardSubject } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardDate } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardView } </a></td>
 			</tr>
 		</c:forEach>
 	</table>
