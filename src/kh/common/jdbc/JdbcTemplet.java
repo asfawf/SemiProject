@@ -23,9 +23,9 @@ public class JdbcTemplet {
 		}
 		
 		if(conn != null) {
-			System.out.println("영결성공");
+			System.out.println("연결성공");
 		}else {
-			System.out.println("영결실패");
+			System.out.println("연결실패");
 		}
 		
 		

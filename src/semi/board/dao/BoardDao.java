@@ -13,6 +13,30 @@ import semi.member.vo.MemberVo;
 
 public class BoardDao {
 	
+
+	public int updateContent(Connection conn, BoardVo vo) {
+		int result = -1;
+		PreparedStatement pstmt= null;
+		String sql= "UPDATE boardTbl SET boardSubject= ? ,boardContent= ? , boardDate=default   WHERE boardNum = ?";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getBoardSubject());
+			pstmt.setString(2, vo.getBoardContent());
+			pstmt.setInt(3, vo.getBoardNum());
+			
+			result= pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	// 글 목록에서 누르면 해당 글로 이동시켜주는거
 	public BoardVo getContent(Connection conn, int urlNum) {
 		PreparedStatement pstmt;
@@ -200,6 +224,8 @@ public class BoardDao {
 		}
 		return result;
 	}
+
+
 
 	
 	

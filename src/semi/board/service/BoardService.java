@@ -9,6 +9,16 @@ import semi.board.dao.BoardDao;
 
 public class BoardService {
 	
+	public int updateContent(BoardVo vo) {
+		int result = -1;
+		Connection conn = JdbcTemplet.getConnection();
+		result= new BoardDao().updateContent(conn, vo);
+		
+		JdbcTemplet.close(conn);
+		
+		return result;
+	}
+	
 	public String getUserInfo(int urlNum) {
 		String result= null;
 		Connection conn= JdbcTemplet.getConnection();
@@ -85,4 +95,6 @@ public class BoardService {
 		
 		return result;
 	}
+
+	
 }
