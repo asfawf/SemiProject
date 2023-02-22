@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi.board.service.BoardService;
+
 /**
  * Servlet implementation class DeleteController
  */
@@ -28,6 +30,17 @@ public class DeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int urlNum= Integer.parseInt(req.getParameter("urlNum"));
 		System.out.println(urlNum);
+		
+		int result = -1 ;
+		
+		result = new BoardService().deleteList(urlNum);
+		
+		if(result < 1) {
+			System.out.println("삭제 실패");
+		}else {
+			System.out.println("삭제 성공");
+			resp.sendRedirect(req.getContextPath());
+		}
 	}
 
 	/**

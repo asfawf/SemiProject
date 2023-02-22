@@ -13,6 +13,26 @@ import semi.member.vo.MemberVo;
 
 public class BoardDao {
 	
+	public int deleteList(Connection conn, int urlNum) {
+		int result = -1;
+		PreparedStatement pstmt = null;
+		
+		String sql= "DELETE FROM boardTbl WHERE boardNum = ?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, urlNum);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			JdbcTemplet.close(pstmt);
+		}
+		
+		return result;
+	}
+	
 
 	public int updateContent(Connection conn, BoardVo vo) {
 		int result = -1;

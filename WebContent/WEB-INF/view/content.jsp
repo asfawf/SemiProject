@@ -27,7 +27,7 @@
 				      <th scope="col">${vo.boardSubject} </th>
 				      <th scope="col"></th>
 				      <th scope="col"></th>
-				      <th scope="col"  style="text-align: right;"><c:if test="${lgnss.userId eq  vo.boardWriter}"><button class="btnDelete btn btn-danger" type="button">삭제하기</button><button type="button" class="btnUpdate btn btn-primary" style="margin-left:3px;">수정하기</button></c:if></th>
+				      <th scope="col"  style="text-align: right;"><c:if test="${lgnss.userId eq  vo.boardWriter}"><button class="btnDelete btn btn-danger" type="button">삭제하기</button><button type="button" class="btnUpdate btn btn-primary" style="margin-left:3px;">수정하기</button></c:if><button type="button" class="gotolist btn btn-secondary" style="margin-left:3px;">목록으로</button></th>
 				    </tr>
 				  </thead>
 				  <tbody class="table-group-divider">
@@ -48,6 +48,10 @@
 	</div>
 	
 	<script>
+		$(".gotolist").on("click", gotoClicklist);
+		function gotoClicklist(){
+			location.href="<%=request.getContextPath()%>";
+		}
 		$(".btnDelete").on("click", btnClickDelete);
 		function btnClickDelete(){
 			location.href="<%=request.getContextPath()%>"+"/boarddelete?urlNum=${vo.boardNum}";

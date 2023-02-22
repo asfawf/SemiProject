@@ -8,6 +8,18 @@ import semi.board.VO.BoardVo;
 import semi.board.dao.BoardDao;
 
 public class BoardService {
+
+
+	public int deleteList(int urlNum) {
+		int result = -1;
+		Connection conn= JdbcTemplet.getConnection();
+		
+		result = new BoardDao().deleteList(conn, urlNum);
+		JdbcTemplet.close(conn);
+		
+		return result;
+	}
+
 	
 	public int updateContent(BoardVo vo) {
 		int result = -1;
