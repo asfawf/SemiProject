@@ -12,6 +12,29 @@ import semi.commentvo.CommentVo;
 
 public class CommentDao {
 
+	public int UpdateCommentController(Connection conn, CommentVo vo) {
+		int result = -1;
+		PreparedStatement pstmt= null;
+		String sql= "Insert into comment_tbl values ( (select NVL(MAX(commentNum), 0)+1 from comment_tbl), ?, ?, ?, default )";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getCommentFrom());
+			pstmt.setString(2, vo.getCommentWriter());
+			pstmt.setString(3, vo.getCommentContent());
+			
+			result= pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	public int deletecomment(Connection conn, int commentNum) {
 		int result = -1;
 		PreparedStatement pstmt= null;
@@ -63,6 +86,7 @@ public class CommentDao {
 		
 		return result;
 	}
+
 
 	
 

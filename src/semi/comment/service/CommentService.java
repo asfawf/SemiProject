@@ -9,6 +9,16 @@ import semi.commentvo.CommentVo;
 
 public class CommentService {
 
+	public int UpdateCommentController(CommentVo vo) {
+		int result = -1;
+		Connection conn = JdbcTemplet.getConnection();
+		
+		result= new CommentDao().UpdateCommentController(conn, vo);
+		JdbcTemplet.close(conn);
+		
+		return result;
+	}
+
 	public int deletecomment(int commentNum) {
 		int result = -1;
 		Connection conn= JdbcTemplet.getConnection();
@@ -33,6 +43,7 @@ public class CommentService {
 		
 		return result;
 	}
+
 
 
 }
