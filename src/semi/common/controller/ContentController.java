@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.board.VO.BoardVo;
 import semi.board.service.BoardService;
+import semi.comment.service.CommentService;
 
 /**
  * Servlet implementation class ContentController
@@ -44,6 +45,8 @@ public class ContentController extends HttpServlet {
 		
 		BoardVo vo = new BoardService().getContent(urlNum); // 이건 해당 페이지의 글 정보 담기
 		System.out.println("ContentController 해당글의 관련 모든 정보 : "+vo);
+		
+		req.setAttribute("comments", new CommentService().getCommentList(urlNum));//댓글 목록 가져오기
 		
 		req.setAttribute("urlNum", urlNum);
 		req.setAttribute("vo", vo);

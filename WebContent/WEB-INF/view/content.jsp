@@ -6,6 +6,7 @@
 <%@ page import="semi.board.dao.BoardDao"%>
 <%@ page import="kh.common.jdbc.JdbcTemplet" %>
 <%@ page import="semi.board.VO.BoardVo" %>
+<%@ page import="semi.commentvo.CommentVo" %>
 <%@ page import="semi.member.vo.MemberVo" %>
 <%@ page import="semi.member.dao.MemberDao" %>
 <%@ page import="semi.member.service.MemberService" %>
@@ -15,9 +16,10 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<title>Insert title here</title>
+<title>본문 보기 담당</title>
 </head>
 <body>
+	
 	<jsp:include page="/WEB-INF/view/nav/nav.jsp"></jsp:include>
 	<div class="container" style="padding-top: 60px">
 		<div class="row">
@@ -47,6 +49,15 @@
 		</div>
 	</div>
 	
+	<table style="margin-left:auto;margin-right:auto; border: solid; border-collapse: collapse; width: 80%; ">
+		<c:forEach items="${comments }" var="comments">
+			<tr style=" border: none; padding: 10px;  text-align:center"> 
+				<td style=" border: 1px solid #444444; padding: 10px;"><span> ${comments.commentWriter} / ${comments.commentContent} / ${comments.commentDate} </span> </td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	
 	<script>
 		$(".gotolist").on("click", gotoClicklist);
 		function gotoClicklist(){
@@ -62,5 +73,7 @@
 		}
 	
 	</script>
+	
+	
 </body>
 </html>
