@@ -12,6 +12,27 @@ import semi.commentvo.CommentVo;
 
 public class CommentDao {
 
+	public int deletecomment(Connection conn, int commentNum) {
+		int result = -1;
+		PreparedStatement pstmt= null;
+		String sql="DELETE FROM comment_tbl WHERE commentNum = ?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNum);
+			
+			result= pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	
 	public List<CommentVo> getCommentList(Connection conn, int urlNum) {
 		List<CommentVo> result = null;
 		PreparedStatement pstmt= null;
@@ -42,5 +63,7 @@ public class CommentDao {
 		
 		return result;
 	}
+
+	
 
 }

@@ -19,7 +19,8 @@
 <title>본문 보기 담당</title>
 </head>
 <body>
-	
+		쓸 거면 이렇게 출력해라 :${comments[0].commentNum}
+		
 	<jsp:include page="/WEB-INF/view/nav/nav.jsp"></jsp:include>
 	<div class="container" style="padding-top: 60px">
 		<div class="row">
@@ -52,13 +53,14 @@
 	<table style="margin-left:auto;margin-right:auto; border: solid; border-collapse: collapse; width: 80%; ">
 		<c:forEach items="${comments }" var="comments">
 			<tr style=" border: none; padding: 10px;  text-align:center"> 
-				<td style=" border: 1px solid #444444; padding: 10px;"><span> ${comments.commentWriter} / ${comments.commentContent} / ${comments.commentDate} </span> </td>
+				<td style=" border: 1px solid #444444; padding: 10px; text-align: left"><span> ${comments.commentNum} / ${comments.commentWriter} / ${comments.commentContent} / ${comments.commentDate}  <c:if test="${lgnss.userId eq comments.commentWriter }"> / <a href="deletecomment?commentNum=${comments.commentNum }&boardNum=${vo.boardNum}">삭제하기</a> </c:if> </span> </td>
 			</tr>
 		</c:forEach>
 	</table>
 	
 	
 	<script>
+	
 		$(".gotolist").on("click", gotoClicklist);
 		function gotoClicklist(){
 			location.href="<%=request.getContextPath()%>";
@@ -70,6 +72,7 @@
 		$(".btnUpdate").on("click", btnClickUpdate);
 		function btnClickUpdate(){
 			location.href="<%=request.getContextPath()%>"+"/update?urlNum=${vo.boardNum}&subject=${vo.boardSubject}&content=${vo.boardContent}&writer=${vo.boardWriter }";
+			
 		}
 	
 	</script>
