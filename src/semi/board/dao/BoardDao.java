@@ -154,6 +154,53 @@ public class BoardDao {
 		return result;
 	}
 
+
+	public int plusBoardview(Connection conn, int urlNum) {
+		int result = -1;
+		PreparedStatement pstmt = null;
+		String sql="UPDATE boardTbl SET boardView= boardView + 1 WHERE boardNum = ? ";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, urlNum);
+			
+			result= pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public String getUserInfo(Connection conn, int urlNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		String sql="select boardWriter from BOARDTBL where boardNum = ?";
+		String result = null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, urlNum);
+			
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				result= rs.getString("boardWriter");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JdbcTemplet.close(pstmt);
+			JdbcTemplet.close(rs);
+		}
+		return result;
+	}
+
 	
 	
 	

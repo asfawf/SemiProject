@@ -18,7 +18,7 @@
 		</tr>
 		<c:forEach items="${boardlist }" var="vo">
 			<tr style=" border: 1px solid #444444; padding: 10px;  text-align:center"> 
-				<td style=" border: 1px solid #444444; padding: 10px;"><a href="content.jsp?urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardNum } </a></td>
+				<td style=" border: 1px solid #444444; padding: 10px;"><a href="content.co?urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardNum } </a></td>
 				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardWriter } </a></td>
 				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardSubject } </a></td>
 				<td style=" border: 1px solid #444444; padding: 10px;"><a href="urlNum=${vo.boardNum }" style="text-decoration: none; color: black;"> ${vo.boardDate } </a></td>

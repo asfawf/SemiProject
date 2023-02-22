@@ -9,11 +9,42 @@ import semi.board.dao.BoardDao;
 
 public class BoardService {
 	
+	public String getUserInfo(int urlNum) {
+		String result= null;
+		Connection conn= JdbcTemplet.getConnection();
+		
+		result = new BoardDao().getUserInfo(conn, urlNum);
+		
+		JdbcTemplet.close(conn);
+		System.out.println("해당글의 작성자: "+ result);
+		return result ;
+	}
+	
+	public int plusBoardview(int urlNum) {
+		int result = -1;
+		Connection conn = JdbcTemplet.getConnection();
+		
+		result= new BoardDao().plusBoardview(conn, urlNum); 
+		
+		if(urlNum < 1) {
+			System.out.println("조회수 추가 실패");
+		}else {
+			System.out.println("조회수 추가 성공");
+		}
+		
+		JdbcTemplet.close(conn);
+		
+		return result;
+		
+	}
+	
 	public BoardVo getContent(int urlNum) {
 		BoardVo vo = null;
 		Connection conn = JdbcTemplet.getConnection();
 		
 		vo= new BoardDao().getContent(conn, urlNum);
+		JdbcTemplet.close(conn);
+		System.out.println("VO From BoardService: "+ vo);
 		
 		return vo;
 	}
